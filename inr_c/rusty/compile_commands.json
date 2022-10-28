@@ -1,0 +1,335 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "stamp.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/stamp.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Acrea.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Acrea.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Aopen.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Aopen.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Aload.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Aload.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Atrim.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Atrim.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Alameq.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Alameq.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Alamcm.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Alamcm.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Aclos.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Aclos.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Asubs.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Asubs.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Amin.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Amin.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Abasic.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Abasic.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Aenum.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Aenum.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Acompose.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Acompose.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Ajoin.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Ajoin.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Aretape.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Aretape.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Apowers.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Apowers.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Alenmin.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Alenmin.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Asseq.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Asseq.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "AGMsseq.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/AGMsseq.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "ALMsseq.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/ALMsseq.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Aclsseq.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Aclsseq.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Astems.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Astems.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Tn.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Tn.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "P.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/P.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Q.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Q.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "V.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/V.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "R.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/R.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "U.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/U.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "T2.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/T2.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "S.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/S.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "util.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/util.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Lex.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Lex.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Colon.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Colon.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "y.tab.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/y.tab.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Aunicode.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Aunicode.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Apr.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Apr.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "Asave.c"
+    ],
+    "directory": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty",
+    "file": "/home/johnsonh/inr/github/inr_rust/inr_c/rusty/Asave.c"
+  }
+]

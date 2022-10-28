@@ -10,11 +10,12 @@ R.o U.o T2.o S.o util.o Lex.o Colon.o y.tab.o Aunicode.o Apr.o Asave.o
 SOURCE 	= Makefile $(HFILES) $(CFILES) Parse.y
 
 .c.o:
-	gcc -ansi -Wall -O0 -g -c $*.c
+	gcc -c $*.c
+#	gcc -ansi -Wall -O0 -g -c $*.c
 #	gcc -DUSE_MALLOC_ALLOCATOR -ansi -Wall -O0 -g -c $*.c
 
 ginr:	$(OFILES)
-	gcc -ansi -Wall -O0 -g $(OFILES) -o ginr
+	gcc $(OFILES) -o ginr
 
 inrx.a:
 	echo hi >inrx.a

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+rm -f *.c *.h *.y *.rs Makefile COPYING compile_commands.json
+rm -rf rust-toolchain target Cargo.* rustinr
+
+cp ../src/* .
+
+bear -- make
+
+rm -f *.o *.y Makefile COPYING ginr
+
+sed --in-place '/Version/s/";/-RUSTY";/' stamp.c
+
+c2rust transpile --binary Lex compile_commands.json
+
+rm -f *.c *.h
+
+mv y.tab.rs y_tab.rs
+
+cargo build
+
+cp target/debug/Lex rustinr

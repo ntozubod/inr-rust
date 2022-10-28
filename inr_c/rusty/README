@@ -1,0 +1,40 @@
+To run on a similar Linux environment:
+-->  ./rustinr
+
+To run on a similar cargo environment:
+-->  cargo run
+
+Anywhere else with an appropriate environment:
+-->  01_cnvt
+followed by one of the above.
+
+===================================================================
+
+This directory contains the result of:
+
+(1) Copy the contents of the neighbouring src directory to here.
+
+(2) Build the ginr executable under the supervision of bear. This results in
+a json file that describes the build process.
+
+(3) Run the c2rust transpiler to convert the individual 'c' files to 'rust'.
+
+(4) Run cargo build to compile the rust and produce a binary. Move the binary
+from the target directory to the current directory as 'rustinr'. Alternatively,
+use 'cargo run'
+
+There are a lot of warnings that need to be looked at but the executable
+appears to run correctly.
+
+===================================================================
+
+IMPORTANT FILES:
+
+01_cnvt: runs all of the necessary programs in an appropriately set up
+environment including rust, bear, and c2rust plus dependencies.
+
+rustinr: an executable runable (on an environment similar to where it was
+built).
+
+*.rs, Cargo.* c2rust-lib.rs rust-toolchain: files necessary for cargo build
+to run properly.
