@@ -1,12 +1,8 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
-#![register_tool(c2rust)]
-#![feature(extern_types, label_break_value, register_tool)]
-use ::c2rust_out::*;
+use ::libc;
 extern "C" {
     pub type _IO_wide_data;
     pub type _IO_codecvt;
     pub type _IO_marker;
-    fn __ctype_b_loc() -> *mut *const libc::c_ushort;
     static mut stdin: *mut FILE;
     static mut stdout: *mut FILE;
     fn fflush(__stream: *mut FILE) -> libc::c_int;
@@ -15,7 +11,8 @@ extern "C" {
     fn printf(_: *const libc::c_char, _: ...) -> libc::c_int;
     fn getc(__stream: *mut FILE) -> libc::c_int;
     fn putc(__c: libc::c_int, __stream: *mut FILE) -> libc::c_int;
-    fn fileno(__stream: *mut FILE) -> libc::c_int;
+    fn exit(_: libc::c_int) -> !;
+    fn __ctype_b_loc() -> *mut *const libc::c_ushort;
     fn yyparse() -> libc::c_int;
     fn strcpy(_: *mut libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
     fn strcat(_: *mut libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
@@ -27,6 +24,7 @@ extern "C" {
         __line: libc::c_uint,
         __function: *const libc::c_char,
     ) -> !;
+    fn fileno(_: *mut FILE) -> libc::c_int;
     static mut fpin: *mut FILE;
     static mut fpout: *mut FILE;
     fn Salloc(_: libc::c_long) -> *mut libc::c_char;
@@ -49,7 +47,6 @@ extern "C" {
     fn U_stats();
     static mut A_report: libc::c_int;
     fn A_create() -> A_OBJECT;
-    fn exit(_: libc::c_int) -> !;
     static mut yylval: YYSTYPE;
 }
 pub type size_t = libc::c_ulong;
@@ -171,6 +168,66 @@ pub static mut TAlist: Tn_OBJECT = 0 as *const Tn_desc as *mut Tn_desc;
 pub static mut Alist: *mut A_OBJECT = 0 as *const A_OBJECT as *mut A_OBJECT;
 #[no_mangle]
 pub static mut TT2: T2_OBJECT = 0 as *const T2_desc as *mut T2_desc;
+#[no_mangle]
+pub unsafe extern "C" fn TT2_init() {
+    let mut result: libc::c_int = 0;
+    let mut ti: libc::c_int = 0;
+    let mut tstr: [libc::c_char; 3] = [0; 3];
+    TT2 = T2_create();
+    result = T2_insert(
+        TT2,
+        b"^^\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+        2 as libc::c_int,
+    );
+    if result == 0 as libc::c_int {} else {
+        __assert_fail(
+            b"result == 0\0" as *const u8 as *const libc::c_char,
+            b"Lex.c\0" as *const u8 as *const libc::c_char,
+            43 as libc::c_int as libc::c_uint,
+            (*::std::mem::transmute::<
+                &[u8; 16],
+                &[libc::c_char; 16],
+            >(b"void TT2_init()\0"))
+                .as_ptr(),
+        );
+    };
+    result = T2_insert(
+        TT2,
+        b"-|\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+        2 as libc::c_int,
+    );
+    if result == 1 as libc::c_int {} else {
+        __assert_fail(
+            b"result == 1\0" as *const u8 as *const libc::c_char,
+            b"Lex.c\0" as *const u8 as *const libc::c_char,
+            45 as libc::c_int as libc::c_uint,
+            (*::std::mem::transmute::<
+                &[u8; 16],
+                &[libc::c_char; 16],
+            >(b"void TT2_init()\0"))
+                .as_ptr(),
+        );
+    };
+    ti = 0 as libc::c_int;
+    while ti < 256 as libc::c_int {
+        tstr[0 as libc::c_int as usize] = ti as libc::c_char;
+        tstr[1 as libc::c_int as usize] = '\0' as i32 as libc::c_char;
+        result = T2_insert(TT2, tstr.as_mut_ptr(), 1 as libc::c_int);
+        if result == ti + 2 as libc::c_int {} else {
+            __assert_fail(
+                b"result == ti + 2\0" as *const u8 as *const libc::c_char,
+                b"Lex.c\0" as *const u8 as *const libc::c_char,
+                50 as libc::c_int as libc::c_uint,
+                (*::std::mem::transmute::<
+                    &[u8; 16],
+                    &[libc::c_char; 16],
+                >(b"void TT2_init()\0"))
+                    .as_ptr(),
+            );
+        };
+        ti += 1;
+    }
+}
 #[no_mangle]
 pub unsafe extern "C" fn pad20(mut s: *mut libc::c_char) -> *mut libc::c_char {
     static mut tmp: [libc::c_char; 41] = [0; 41];
@@ -446,13 +503,12 @@ pub static mut Notice: [libc::c_char; 67] = unsafe {
         &mut [libc::c_char; 67],
     >(b"Copyright (c) 1985, 1988, J Howard Johnson, University of Waterloo\0")
 };
-unsafe fn main_0(
+#[no_mangle]
+pub unsafe extern "C" fn smain(
     mut argc: libc::c_int,
     mut argv: *mut *mut libc::c_char,
 ) -> libc::c_int {
-    let mut ti: libc::c_int = 0;
     let mut result: libc::c_int = 0;
-    let mut tstr: [libc::c_char; 3] = [0; 3];
     let mut file_in: [libc::c_char; 50] = [0; 50];
     let mut file_out: [libc::c_char; 50] = [0; 50];
     let mut rpt_out: [libc::c_char; 50] = [0; 50];
@@ -570,60 +626,7 @@ unsafe fn main_0(
         }
         fprintf(fpout, b"\n\n\n\0" as *const u8 as *const libc::c_char);
     }
-    TT2 = T2_create();
-    result = T2_insert(
-        TT2,
-        b"^^\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-        2 as libc::c_int,
-    );
-    if result == 0 as libc::c_int {} else {
-        __assert_fail(
-            b"result == 0\0" as *const u8 as *const libc::c_char,
-            b"Lex.c\0" as *const u8 as *const libc::c_char,
-            388 as libc::c_int as libc::c_uint,
-            (*::std::mem::transmute::<
-                &[u8; 23],
-                &[libc::c_char; 23],
-            >(b"int main(int, char **)\0"))
-                .as_ptr(),
-        );
-    }
-    result = T2_insert(
-        TT2,
-        b"-|\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-        2 as libc::c_int,
-    );
-    if result == 1 as libc::c_int {} else {
-        __assert_fail(
-            b"result == 1\0" as *const u8 as *const libc::c_char,
-            b"Lex.c\0" as *const u8 as *const libc::c_char,
-            390 as libc::c_int as libc::c_uint,
-            (*::std::mem::transmute::<
-                &[u8; 23],
-                &[libc::c_char; 23],
-            >(b"int main(int, char **)\0"))
-                .as_ptr(),
-        );
-    }
-    ti = 0 as libc::c_int;
-    while ti < 256 as libc::c_int {
-        tstr[0 as libc::c_int as usize] = ti as libc::c_char;
-        tstr[1 as libc::c_int as usize] = '\0' as i32 as libc::c_char;
-        result = T2_insert(TT2, tstr.as_mut_ptr(), 1 as libc::c_int);
-        if result == ti + 2 as libc::c_int {} else {
-            __assert_fail(
-                b"result == ti + 2\0" as *const u8 as *const libc::c_char,
-                b"Lex.c\0" as *const u8 as *const libc::c_char,
-                395 as libc::c_int as libc::c_uint,
-                (*::std::mem::transmute::<
-                    &[u8; 23],
-                    &[libc::c_char; 23],
-                >(b"int main(int, char **)\0"))
-                    .as_ptr(),
-            );
-        }
-        ti += 1;
-    }
+    TT2_init();
     Alist = Salloc(
         (100 as libc::c_int as libc::c_ulong)
             .wrapping_mul(::std::mem::size_of::<A_OBJECT>() as libc::c_ulong)
@@ -639,14 +642,14 @@ unsafe fn main_0(
         __assert_fail(
             b"result == 0\0" as *const u8 as *const libc::c_char,
             b"Lex.c\0" as *const u8 as *const libc::c_char,
-            401 as libc::c_int as libc::c_uint,
+            408 as libc::c_int as libc::c_uint,
             (*::std::mem::transmute::<
-                &[u8; 23],
-                &[libc::c_char; 23],
-            >(b"int main(int, char **)\0"))
+                &[u8; 24],
+                &[libc::c_char; 24],
+            >(b"int smain(int, char **)\0"))
                 .as_ptr(),
         );
-    }
+    };
     let ref mut fresh2 = *Alist.offset(0 as libc::c_int as isize);
     *fresh2 = A_create();
     pr_time_diff();
@@ -692,23 +695,4 @@ pub unsafe extern "C" fn tonum(mut p: *mut libc::c_char) -> libc::c_int {
         acum = acum * 10 as libc::c_int + c - '0' as i32;
     }
     return acum;
-}
-pub fn main() {
-    let mut args: Vec::<*mut libc::c_char> = Vec::new();
-    for arg in ::std::env::args() {
-        args.push(
-            (::std::ffi::CString::new(arg))
-                .expect("Failed to convert argument into CString.")
-                .into_raw(),
-        );
-    }
-    args.push(::std::ptr::null_mut());
-    unsafe {
-        ::std::process::exit(
-            main_0(
-                (args.len() - 1) as libc::c_int,
-                args.as_mut_ptr() as *mut *mut libc::c_char,
-            ) as i32,
-        )
-    }
 }

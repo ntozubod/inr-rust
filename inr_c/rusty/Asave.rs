@@ -3,15 +3,15 @@ extern "C" {
     pub type _IO_wide_data;
     pub type _IO_codecvt;
     pub type _IO_marker;
-    fn fopen(_: *const libc::c_char, _: *const libc::c_char) -> *mut FILE;
+    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
     static mut stdin: *mut FILE;
     static mut stdout: *mut FILE;
     fn fclose(__stream: *mut FILE) -> libc::c_int;
     fn fflush(__stream: *mut FILE) -> libc::c_int;
-    fn A_add(_: A_OBJECT, _: libc::c_int, _: libc::c_int, _: libc::c_int) -> A_OBJECT;
-    fn A_destroy(_: A_OBJECT);
-    fn A_create() -> A_OBJECT;
-    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
+    fn fopen(_: *const libc::c_char, _: *const libc::c_char) -> *mut FILE;
+    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
+    fn getc(__stream: *mut FILE) -> libc::c_int;
+    fn putc(__c: libc::c_int, __stream: *mut FILE) -> libc::c_int;
     static mut fpin: *mut FILE;
     static mut fpout: *mut FILE;
     fn Salloc(_: libc::c_long) -> *mut libc::c_char;
@@ -23,9 +23,9 @@ extern "C" {
     fn T2_insert(_: T2_OBJECT, _: *mut libc::c_char, _: libc::c_int) -> libc::c_int;
     fn T2_name(_: T2_OBJECT, _: libc::c_int) -> *mut libc::c_char;
     fn T2_length(_: T2_OBJECT, _: libc::c_int) -> libc::c_int;
-    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
-    fn putc(__c: libc::c_int, __stream: *mut FILE) -> libc::c_int;
-    fn getc(__stream: *mut FILE) -> libc::c_int;
+    fn A_create() -> A_OBJECT;
+    fn A_destroy(_: A_OBJECT);
+    fn A_add(_: A_OBJECT, _: libc::c_int, _: libc::c_int, _: libc::c_int) -> A_OBJECT;
 }
 pub type size_t = libc::c_ulong;
 pub type __off_t = libc::c_long;
@@ -305,7 +305,7 @@ pub unsafe extern "C" fn A_load_save(
                                         }
                                         if c < '0' as i32 || c > '9' as i32 {
                                             error_code = 9 as libc::c_int;
-                                            current_block = 5550954089351268871;
+                                            current_block = 2846881917047551707;
                                             break;
                                         } else {
                                             number_tapes = number_tapes * 10 as libc::c_int
@@ -315,12 +315,12 @@ pub unsafe extern "C" fn A_load_save(
                                                 continue;
                                             }
                                             error_code = 10 as libc::c_int;
-                                            current_block = 5550954089351268871;
+                                            current_block = 2846881917047551707;
                                             break;
                                         }
                                     }
                                     match current_block {
-                                        5550954089351268871 => {}
+                                        2846881917047551707 => {}
                                         _ => {
                                             (*A).A_nT = number_tapes;
                                             if c != '\t' as i32 {
@@ -339,7 +339,7 @@ pub unsafe extern "C" fn A_load_save(
                                                         }
                                                         if c < '0' as i32 || c > '9' as i32 {
                                                             error_code = 13 as libc::c_int;
-                                                            current_block = 5550954089351268871;
+                                                            current_block = 2846881917047551707;
                                                             break;
                                                         } else {
                                                             number_rows = number_rows * 10 as libc::c_int
@@ -349,12 +349,12 @@ pub unsafe extern "C" fn A_load_save(
                                                                 continue;
                                                             }
                                                             error_code = 14 as libc::c_int;
-                                                            current_block = 5550954089351268871;
+                                                            current_block = 2846881917047551707;
                                                             break;
                                                         }
                                                     }
                                                     match current_block {
-                                                        5550954089351268871 => {}
+                                                        2846881917047551707 => {}
                                                         _ => {
                                                             if c != '\t' as i32 {
                                                                 error_code = 15 as libc::c_int;
@@ -372,7 +372,7 @@ pub unsafe extern "C" fn A_load_save(
                                                                         }
                                                                         if c < '0' as i32 || c > '9' as i32 {
                                                                             error_code = 17 as libc::c_int;
-                                                                            current_block = 5550954089351268871;
+                                                                            current_block = 2846881917047551707;
                                                                             break;
                                                                         } else {
                                                                             number_states = number_states * 10 as libc::c_int
@@ -382,12 +382,12 @@ pub unsafe extern "C" fn A_load_save(
                                                                                 continue;
                                                                             }
                                                                             error_code = 18 as libc::c_int;
-                                                                            current_block = 5550954089351268871;
+                                                                            current_block = 2846881917047551707;
                                                                             break;
                                                                         }
                                                                     }
                                                                     match current_block {
-                                                                        5550954089351268871 => {}
+                                                                        2846881917047551707 => {}
                                                                         _ => {
                                                                             if c != '\t' as i32 {
                                                                                 error_code = 19 as libc::c_int;
@@ -405,7 +405,7 @@ pub unsafe extern "C" fn A_load_save(
                                                                                         }
                                                                                         if c < '0' as i32 || c > '9' as i32 {
                                                                                             error_code = 21 as libc::c_int;
-                                                                                            current_block = 5550954089351268871;
+                                                                                            current_block = 2846881917047551707;
                                                                                             break;
                                                                                         } else {
                                                                                             number_symbols = number_symbols * 10 as libc::c_int
@@ -415,19 +415,19 @@ pub unsafe extern "C" fn A_load_save(
                                                                                                 continue;
                                                                                             }
                                                                                             error_code = 22 as libc::c_int;
-                                                                                            current_block = 5550954089351268871;
+                                                                                            current_block = 2846881917047551707;
                                                                                             break;
                                                                                         }
                                                                                     }
                                                                                     match current_block {
-                                                                                        5550954089351268871 => {}
+                                                                                        2846881917047551707 => {}
                                                                                         _ => {
                                                                                             if c != '\n' as i32 {
                                                                                                 error_code = 23 as libc::c_int;
                                                                                             } else {
                                                                                                 c = getc(fp);
                                                                                                 row_no = -(1 as libc::c_int);
-                                                                                                'c_3351: loop {
+                                                                                                'c_2044: loop {
                                                                                                     row_no += 1;
                                                                                                     if row_no >= number_rows {
                                                                                                         error_code = 24 as libc::c_int;
@@ -441,7 +441,7 @@ pub unsafe extern "C" fn A_load_save(
                                                                                                         while c != '\t' as i32 {
                                                                                                             if c < '0' as i32 || c > '9' as i32 {
                                                                                                                 error_code = 26 as libc::c_int;
-                                                                                                                break 'c_3351;
+                                                                                                                break 'c_2044;
                                                                                                             } else {
                                                                                                                 from_state = from_state * 10 as libc::c_int
                                                                                                                     + (c - '0' as i32);
@@ -450,7 +450,7 @@ pub unsafe extern "C" fn A_load_save(
                                                                                                                     continue;
                                                                                                                 }
                                                                                                                 error_code = 27 as libc::c_int;
-                                                                                                                break 'c_3351;
+                                                                                                                break 'c_2044;
                                                                                                             }
                                                                                                         }
                                                                                                         if c != '\t' as i32 {
@@ -470,7 +470,7 @@ pub unsafe extern "C" fn A_load_save(
                                                                                                                 while c != '\t' as i32 {
                                                                                                                     if c < '0' as i32 || c > '9' as i32 {
                                                                                                                         error_code = 31 as libc::c_int;
-                                                                                                                        break 'c_3351;
+                                                                                                                        break 'c_2044;
                                                                                                                     } else {
                                                                                                                         to_state = to_state * 10 as libc::c_int + (c - '0' as i32);
                                                                                                                         c = getc(fp);
@@ -478,7 +478,7 @@ pub unsafe extern "C" fn A_load_save(
                                                                                                                             continue;
                                                                                                                         }
                                                                                                                         error_code = 32 as libc::c_int;
-                                                                                                                        break 'c_3351;
+                                                                                                                        break 'c_2044;
                                                                                                                     }
                                                                                                                 }
                                                                                                                 if c != '\t' as i32 {
@@ -508,7 +508,7 @@ pub unsafe extern "C" fn A_load_save(
                                                                                                                             while c != '\t' as i32 {
                                                                                                                                 if c < '0' as i32 || c > '9' as i32 {
                                                                                                                                     error_code = 37 as libc::c_int;
-                                                                                                                                    break 'c_3351;
+                                                                                                                                    break 'c_2044;
                                                                                                                                 } else {
                                                                                                                                     tape_no = tape_no * 10 as libc::c_int + (c - '0' as i32);
                                                                                                                                     c = getc(fp);
@@ -516,7 +516,7 @@ pub unsafe extern "C" fn A_load_save(
                                                                                                                                         continue;
                                                                                                                                     }
                                                                                                                                     error_code = 38 as libc::c_int;
-                                                                                                                                    break 'c_3351;
+                                                                                                                                    break 'c_2044;
                                                                                                                                 }
                                                                                                                             }
                                                                                                                         }
@@ -537,7 +537,7 @@ pub unsafe extern "C" fn A_load_save(
                                                                                                                                 while c != '\t' as i32 {
                                                                                                                                     if c < '0' as i32 || c > '9' as i32 {
                                                                                                                                         error_code = 42 as libc::c_int;
-                                                                                                                                        break 'c_3351;
+                                                                                                                                        break 'c_2044;
                                                                                                                                     } else {
                                                                                                                                         length = length * 10 as libc::c_int + (c - '0' as i32);
                                                                                                                                         c = getc(fp);
@@ -545,7 +545,7 @@ pub unsafe extern "C" fn A_load_save(
                                                                                                                                             continue;
                                                                                                                                         }
                                                                                                                                         error_code = 43 as libc::c_int;
-                                                                                                                                        break 'c_3351;
+                                                                                                                                        break 'c_2044;
                                                                                                                                     }
                                                                                                                                 }
                                                                                                                                 if c != '\t' as i32 {
@@ -571,7 +571,7 @@ pub unsafe extern "C" fn A_load_save(
                                                                                                                                             continue;
                                                                                                                                         }
                                                                                                                                         error_code = 45 as libc::c_int;
-                                                                                                                                        break 'c_3351;
+                                                                                                                                        break 'c_2044;
                                                                                                                                     }
                                                                                                                                     *buffer.offset(i as isize) = '\0' as i32 as libc::c_char;
                                                                                                                                     if c != '\n' as i32 {

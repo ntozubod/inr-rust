@@ -18,8 +18,8 @@ extern "C" {
     fn T2_name(_: T2_OBJECT, _: libc::c_int) -> *mut libc::c_char;
     fn T2_length(_: T2_OBJECT, _: libc::c_int) -> libc::c_int;
     fn A_create() -> A_OBJECT;
-    fn A_open(_: A_OBJECT) -> A_OBJECT;
     fn A_add(_: A_OBJECT, _: libc::c_int, _: libc::c_int, _: libc::c_int) -> A_OBJECT;
+    fn A_open(_: A_OBJECT) -> A_OBJECT;
     fn A_close(_: A_OBJECT) -> A_OBJECT;
     fn A_min(_: A_OBJECT) -> A_OBJECT;
     fn A_lenmin(_: A_OBJECT) -> A_OBJECT;
@@ -137,7 +137,7 @@ pub unsafe extern "C" fn A_slurp_octets(
             >(b"A_OBJECT A_slurp_octets(char *, T2_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     if (*(*T2_Sigma).T2_int).Tn_n >= 258 as libc::c_int {} else {
         __assert_fail(
             b"T2_Sigma-> T2_int-> Tn_n >= 258\0" as *const u8 as *const libc::c_char,
@@ -149,7 +149,7 @@ pub unsafe extern "C" fn A_slurp_octets(
             >(b"A_OBJECT A_slurp_octets(char *, T2_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     A = A_create();
     c = getc(fp);
     state = 0 as libc::c_int;
@@ -166,7 +166,7 @@ pub unsafe extern "C" fn A_slurp_octets(
                 >(b"A_OBJECT A_slurp_octets(char *, T2_OBJECT)\0"))
                     .as_ptr(),
             );
-        }
+        };
         A = A_add(A, state, c + 2 as libc::c_int, next_state);
         let fresh0 = next_state;
         next_state = next_state + 1;
@@ -214,7 +214,7 @@ pub unsafe extern "C" fn A_slurp_utf8(
             >(b"A_OBJECT A_slurp_utf8(char *, T2_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     if (*(*T2_Sigma).T2_int).Tn_n >= 258 as libc::c_int {} else {
         __assert_fail(
             b"T2_Sigma-> T2_int-> Tn_n >= 258\0" as *const u8 as *const libc::c_char,
@@ -226,7 +226,7 @@ pub unsafe extern "C" fn A_slurp_utf8(
             >(b"A_OBJECT A_slurp_utf8(char *, T2_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     A = A_slurp_octets(file, T2_Sigma);
     A = A_open(A);
     i = 0 as libc::c_int;
@@ -258,7 +258,7 @@ pub unsafe extern "C" fn A_slurp_utf8(
                         >(b"A_OBJECT A_slurp_utf8(char *, T2_OBJECT)\0"))
                             .as_ptr(),
                     );
-                }
+                };
                 c2 = (*((*A).A_t).offset((i + 1 as libc::c_int) as isize)).A_b
                     - 2 as libc::c_int;
                 cp = (c1 & 0x1f as libc::c_int) + (c2 & 0x3f as libc::c_int);
@@ -286,7 +286,7 @@ pub unsafe extern "C" fn A_slurp_utf8(
                         >(b"A_OBJECT A_slurp_utf8(char *, T2_OBJECT)\0"))
                             .as_ptr(),
                     );
-                }
+                };
                 c2 = (*((*A).A_t).offset((i + 1 as libc::c_int) as isize)).A_b
                     - 2 as libc::c_int;
                 c3 = (*((*A).A_t).offset((i + 2 as libc::c_int) as isize)).A_b
@@ -321,7 +321,7 @@ pub unsafe extern "C" fn A_slurp_utf8(
                         >(b"A_OBJECT A_slurp_utf8(char *, T2_OBJECT)\0"))
                             .as_ptr(),
                     );
-                }
+                };
                 c2 = (*((*A).A_t).offset((i + 1 as libc::c_int) as isize)).A_b
                     - 2 as libc::c_int;
                 c3 = (*((*A).A_t).offset((i + 2 as libc::c_int) as isize)).A_b
@@ -390,7 +390,7 @@ pub unsafe extern "C" fn A_spit_octets(
             >(b"A_OBJECT A_spit_octets(A_OBJECT, char *, T2_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     if (*(*T2_Sigma).T2_int).Tn_n >= 258 as libc::c_int {} else {
         __assert_fail(
             b"T2_Sigma-> T2_int-> Tn_n >= 258\0" as *const u8 as *const libc::c_char,
@@ -402,7 +402,7 @@ pub unsafe extern "C" fn A_spit_octets(
             >(b"A_OBJECT A_spit_octets(A_OBJECT, char *, T2_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     A = A_gen_min(A);
     i = 0 as libc::c_int;
     while i < (*A).A_nrows {
@@ -418,7 +418,7 @@ pub unsafe extern "C" fn A_spit_octets(
                 >(b"A_OBJECT A_spit_octets(A_OBJECT, char *, T2_OBJECT)\0"))
                     .as_ptr(),
             );
-        }
+        };
         if s1 >= 2 as libc::c_int {
             c1 = s1 - 2 as libc::c_int;
             fputc(c1, fp);
@@ -463,7 +463,7 @@ pub unsafe extern "C" fn A_spit_utf8(
             >(b"A_OBJECT A_spit_utf8(A_OBJECT, char *, T2_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     if (*(*T2_Sigma).T2_int).Tn_n >= 258 as libc::c_int {} else {
         __assert_fail(
             b"T2_Sigma-> T2_int-> Tn_n >= 258\0" as *const u8 as *const libc::c_char,
@@ -475,7 +475,7 @@ pub unsafe extern "C" fn A_spit_utf8(
             >(b"A_OBJECT A_spit_utf8(A_OBJECT, char *, T2_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     A = A_gen_min(A);
     i = 0 as libc::c_int;
     while i < (*A).A_nrows {

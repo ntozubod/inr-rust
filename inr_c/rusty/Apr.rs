@@ -3,6 +3,7 @@ extern "C" {
     pub type _IO_wide_data;
     pub type _IO_codecvt;
     pub type _IO_marker;
+    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
     static mut stdin: *mut FILE;
     static mut stdout: *mut FILE;
     fn fclose(__stream: *mut FILE) -> libc::c_int;
@@ -10,13 +11,14 @@ extern "C" {
     fn fopen(_: *const libc::c_char, _: *const libc::c_char) -> *mut FILE;
     fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
     fn getc(__stream: *mut FILE) -> libc::c_int;
-    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
     fn __assert_fail(
         __assertion: *const libc::c_char,
         __file: *const libc::c_char,
         __line: libc::c_uint,
         __function: *const libc::c_char,
     ) -> !;
+    static mut fpin: *mut FILE;
+    static mut fpout: *mut FILE;
     fn Salloc(_: libc::c_long) -> *mut libc::c_char;
     fn Sfree(_: *mut libc::c_char);
     fn Srealloc(_: *mut libc::c_char, _: libc::c_long) -> *mut libc::c_char;
@@ -26,10 +28,8 @@ extern "C" {
     fn Tn_create() -> Tn_OBJECT;
     fn Tn_destroy(_: Tn_OBJECT);
     fn Tn_insert(_: Tn_OBJECT, _: *mut libc::c_char, _: libc::c_int) -> libc::c_int;
-    fn T2_name_pr(_: T2_OBJECT, _: libc::c_int) -> *mut libc::c_char;
-    static mut fpout: *mut FILE;
-    static mut fpin: *mut FILE;
     fn T2_insert(_: T2_OBJECT, _: *mut libc::c_char, _: libc::c_int) -> libc::c_int;
+    fn T2_name_pr(_: T2_OBJECT, _: libc::c_int) -> *mut libc::c_char;
     fn A_create() -> A_OBJECT;
     fn A_destroy(_: A_OBJECT);
     fn A_add(_: A_OBJECT, _: libc::c_int, _: libc::c_int, _: libc::c_int) -> A_OBJECT;
@@ -277,8 +277,8 @@ pub unsafe extern "C" fn A_load_pr(
             >(b"A_OBJECT A_load_pr(char *, T2_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
-    'c_3232: loop {
+    };
+    'c_1925: loop {
         if c == ' ' as i32 || c == '\t' as i32 || c == '\n' as i32
             || c == -(1 as libc::c_int)
         {
@@ -321,7 +321,7 @@ pub unsafe extern "C" fn A_load_pr(
                         >(b"A_OBJECT A_load_pr(char *, T2_OBJECT)\0"))
                             .as_ptr(),
                     );
-                }
+                };
                 c = getc(fp);
                 l = 0 as libc::c_int;
                 tape_number = 0 as libc::c_int;
@@ -396,7 +396,7 @@ pub unsafe extern "C" fn A_load_pr(
                                     d = c + 10 as libc::c_int - 'a' as i32;
                                 } else {
                                     error_code = 4 as libc::c_int;
-                                    break 'c_3232;
+                                    break 'c_1925;
                                 }
                                 d *= 16 as libc::c_int;
                                 c = getc(fp);
@@ -408,12 +408,12 @@ pub unsafe extern "C" fn A_load_pr(
                                     d += c + 10 as libc::c_int - 'a' as i32;
                                 } else {
                                     error_code = 5 as libc::c_int;
-                                    break 'c_3232;
+                                    break 'c_1925;
                                 }
                                 c = d;
                             } else if c != -(1 as libc::c_int) {
                                 error_code = 6 as libc::c_int;
-                                break 'c_3232;
+                                break 'c_1925;
                             }
                         }
                         let fresh3 = l;

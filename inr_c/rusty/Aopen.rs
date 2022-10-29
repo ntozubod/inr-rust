@@ -10,17 +10,17 @@ extern "C" {
         __line: libc::c_uint,
         __function: *const libc::c_char,
     ) -> !;
+    static mut fpout: *mut FILE;
     fn copymem(_: libc::c_long, _: *mut libc::c_char, _: *mut libc::c_char);
     fn Salloc(_: libc::c_long) -> *mut libc::c_char;
     fn Sfree(_: *mut libc::c_char);
     fn Srealloc(_: *mut libc::c_char, _: libc::c_long) -> *mut libc::c_char;
     fn Ssize(_: *mut libc::c_char) -> libc::c_long;
     fn s_alloc(_: libc::c_int) -> *mut SHORT;
-    static mut fpout: *mut FILE;
+    fn R_create() -> R_OBJECT;
     fn R_destroy(_: R_OBJECT);
     fn R_insert(_: R_OBJECT, _: libc::c_int, _: libc::c_int) -> libc::c_int;
     static mut A_report: libc::c_int;
-    fn R_create() -> R_OBJECT;
 }
 pub type size_t = libc::c_ulong;
 pub type __off_t = libc::c_long;
@@ -123,7 +123,7 @@ pub unsafe extern "C" fn A_add(
             >(b"A_OBJECT A_add(A_OBJECT, int, int, int)\0"))
                 .as_ptr(),
         );
-    }
+    };
     if (*A).A_mode == 0 as libc::c_int {} else {
         __assert_fail(
             b"A-> A_mode == OPEN\0" as *const u8 as *const libc::c_char,
@@ -135,7 +135,7 @@ pub unsafe extern "C" fn A_add(
             >(b"A_OBJECT A_add(A_OBJECT, int, int, int)\0"))
                 .as_ptr(),
         );
-    }
+    };
     if a >= 0 as libc::c_int && b >= 0 as libc::c_int && c >= 0 as libc::c_int {} else {
         __assert_fail(
             b"a >= 0 && b >= 0 && c >= 0\0" as *const u8 as *const libc::c_char,
@@ -147,7 +147,7 @@ pub unsafe extern "C" fn A_add(
             >(b"A_OBJECT A_add(A_OBJECT, int, int, int)\0"))
                 .as_ptr(),
         );
-    }
+    };
     if a < 0o17777777777 as libc::c_int && b < 0o17777777777 as libc::c_int
         && c < 0o17777777777 as libc::c_int
     {} else {
@@ -162,7 +162,7 @@ pub unsafe extern "C" fn A_add(
             >(b"A_OBJECT A_add(A_OBJECT, int, int, int)\0"))
                 .as_ptr(),
         );
-    }
+    };
     if (*A).A_nrows >= (*A).A_lrows {
         let ref mut fresh0 = (*A).A_t;
         *fresh0 = Srealloc(
@@ -207,7 +207,7 @@ pub unsafe extern "C" fn A_open(mut A: A_OBJECT) -> A_OBJECT {
             >(b"A_OBJECT A_open(A_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     (*A).A_mode = 0 as libc::c_int;
     Sfree((*A).A_p as *mut libc::c_char);
     let ref mut fresh3 = (*A).A_p;
@@ -239,7 +239,7 @@ pub unsafe extern "C" fn A_close(mut A: A_OBJECT) -> A_OBJECT {
             >(b"A_OBJECT A_close(A_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     if (*A).A_mode != 0 as libc::c_int {
         return A;
     }
@@ -280,7 +280,7 @@ pub unsafe extern "C" fn A_close(mut A: A_OBJECT) -> A_OBJECT {
             >(b"A_OBJECT A_close(A_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     t1 = (*A).A_t;
     t2 = Salloc(
         (((*A).A_nrows + 2 as libc::c_int) as libc::c_ulong)
@@ -324,7 +324,7 @@ pub unsafe extern "C" fn A_close(mut A: A_OBJECT) -> A_OBJECT {
                 >(b"A_OBJECT A_close(A_OBJECT)\0"))
                     .as_ptr(),
             );
-        }
+        };
         let ref mut fresh8 = *cnt.offset((*p).A_c as isize);
         *fresh8 += 1;
     }
@@ -351,7 +351,7 @@ pub unsafe extern "C" fn A_close(mut A: A_OBJECT) -> A_OBJECT {
             >(b"A_OBJECT A_close(A_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     p = t1z;
     loop {
         p = p.offset(-1);
@@ -373,7 +373,7 @@ pub unsafe extern "C" fn A_close(mut A: A_OBJECT) -> A_OBJECT {
                 >(b"A_OBJECT A_close(A_OBJECT)\0"))
                     .as_ptr(),
             );
-        }
+        };
         let ref mut fresh11 = (*q).A_b;
         *fresh11 = (*p).A_b;
         let ref mut fresh12 = *cnt.offset(*fresh11 as isize);
@@ -403,7 +403,7 @@ pub unsafe extern "C" fn A_close(mut A: A_OBJECT) -> A_OBJECT {
             >(b"A_OBJECT A_close(A_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     p = t2z;
     loop {
         p = p.offset(-1);
@@ -424,7 +424,7 @@ pub unsafe extern "C" fn A_close(mut A: A_OBJECT) -> A_OBJECT {
                 >(b"A_OBJECT A_close(A_OBJECT)\0"))
                     .as_ptr(),
             );
-        }
+        };
         let ref mut fresh15 = (*q).A_a;
         *fresh15 = (*p).A_a;
         let ref mut fresh16 = *cnt.offset(*fresh15 as isize);
@@ -455,7 +455,7 @@ pub unsafe extern "C" fn A_close(mut A: A_OBJECT) -> A_OBJECT {
             >(b"A_OBJECT A_close(A_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     p = t1z;
     loop {
         p = p.offset(-1);
@@ -558,7 +558,7 @@ pub unsafe extern "C" fn A_rename(mut A: A_OBJECT, mut rena: *mut SHORT) -> A_OB
             >(b"A_OBJECT A_rename(A_OBJECT, SHORT *)\0"))
                 .as_ptr(),
         );
-    }
+    };
     trena = s_alloc((*A).A_nQ);
     sp = trena.offset((*A).A_nQ as isize);
     loop {
@@ -659,7 +659,7 @@ pub unsafe extern "C" fn A_mkdense(mut A: A_OBJECT) -> A_OBJECT {
             >(b"A_OBJECT A_mkdense(A_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     R = R_create();
     R_insert(R, 0 as libc::c_int, 0 as libc::c_int);
     R_insert(R, 1 as libc::c_int, 0 as libc::c_int);

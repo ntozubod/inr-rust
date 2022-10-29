@@ -8,9 +8,9 @@ extern "C" {
     fn A_min(_: A_OBJECT) -> A_OBJECT;
     fn A_lambda() -> A_OBJECT;
     fn A_star(_: A_OBJECT) -> A_OBJECT;
+    fn A_concat(_: A_OBJECT, _: A_OBJECT) -> A_OBJECT;
     fn A_alph(_: A_OBJECT) -> A_OBJECT;
     fn A_compose(_: A_OBJECT, _: A_OBJECT) -> A_OBJECT;
-    fn A_concat(_: A_OBJECT, _: A_OBJECT) -> A_OBJECT;
 }
 pub type SHORT = libc::c_int;
 #[derive(Copy, Clone)]

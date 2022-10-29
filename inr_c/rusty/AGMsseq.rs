@@ -4,10 +4,9 @@ extern "C" {
     pub type _IO_codecvt;
     pub type _IO_marker;
     fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
+    fn Sfree(_: *mut libc::c_char);
     static mut fpout: *mut FILE;
     fn Salloc(_: libc::c_long) -> *mut libc::c_char;
-    fn Sfree(_: *mut libc::c_char);
-    fn Srealloc(_: *mut libc::c_char, _: libc::c_long) -> *mut libc::c_char;
     fn Error(_: *mut libc::c_char);
     fn s_alloc(_: libc::c_int) -> *mut SHORT;
     fn veccpy(_: *mut SHORT, _: *mut SHORT) -> *mut SHORT;
@@ -26,6 +25,7 @@ extern "C" {
     fn A_open(_: A_OBJECT) -> A_OBJECT;
     fn A_close(_: A_OBJECT) -> A_OBJECT;
     fn A_mkdense(_: A_OBJECT) -> A_OBJECT;
+    fn Srealloc(_: *mut libc::c_char, _: libc::c_long) -> *mut libc::c_char;
     fn A_min(_: A_OBJECT) -> A_OBJECT;
     fn A_st_free();
     fn A_stems(_: A_OBJECT, _: libc::c_int) -> *mut *mut SHORT;

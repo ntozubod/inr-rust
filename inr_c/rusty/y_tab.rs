@@ -5,11 +5,26 @@ extern "C" {
     pub type _IO_marker;
     fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
     fn printf(_: *const libc::c_char, _: ...) -> libc::c_int;
-    fn fileno(__stream: *mut FILE) -> libc::c_int;
+    fn tonum(_: *mut libc::c_char) -> libc::c_int;
+    fn yyerror(_: *mut libc::c_char);
+    fn yylex() -> libc::c_int;
+    fn pad20(_: *mut libc::c_char) -> *mut libc::c_char;
+    static mut TT2: T2_OBJECT;
+    static mut TAlist: Tn_OBJECT;
+    static mut Alist: *mut A_OBJECT;
+    static mut Atemp: A_OBJECT;
+    static mut A: A_OBJECT;
+    fn do_nn_a(_: *mut libc::c_char, _: *mut libc::c_char) -> A_OBJECT;
+    fn do_ann_a(_: A_OBJECT, _: *mut libc::c_char, _: *mut libc::c_char) -> A_OBJECT;
+    fn do_an_a(_: A_OBJECT, _: *mut libc::c_char) -> A_OBJECT;
+    fn do_n_i(_: *mut libc::c_char) -> libc::c_int;
+    static mut disp_flag: libc::c_int;
+    fn A_cmpow(_: A_OBJECT, _: libc::c_int) -> A_OBJECT;
     fn malloc(_: libc::c_ulong) -> *mut libc::c_void;
     fn free(_: *mut libc::c_void);
     fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
     fn isatty(__fd: libc::c_int) -> libc::c_int;
+    fn fileno(_: *mut FILE) -> libc::c_int;
     static mut fpin: *mut FILE;
     static mut fpout: *mut FILE;
     fn Srealloc(_: *mut libc::c_char, _: libc::c_long) -> *mut libc::c_char;
@@ -55,21 +70,6 @@ extern "C" {
     fn A_join(_: A_OBJECT, _: A_OBJECT) -> A_OBJECT;
     fn A_retape(_: A_OBJECT, _: A_OBJECT, _: T2_OBJECT) -> A_OBJECT;
     fn A_comma(_: A_OBJECT, _: A_OBJECT) -> A_OBJECT;
-    fn A_cmpow(_: A_OBJECT, _: libc::c_int) -> A_OBJECT;
-    static mut disp_flag: libc::c_int;
-    fn do_n_i(_: *mut libc::c_char) -> libc::c_int;
-    fn do_an_a(_: A_OBJECT, _: *mut libc::c_char) -> A_OBJECT;
-    fn do_ann_a(_: A_OBJECT, _: *mut libc::c_char, _: *mut libc::c_char) -> A_OBJECT;
-    fn do_nn_a(_: *mut libc::c_char, _: *mut libc::c_char) -> A_OBJECT;
-    static mut A: A_OBJECT;
-    static mut Atemp: A_OBJECT;
-    static mut Alist: *mut A_OBJECT;
-    static mut TAlist: Tn_OBJECT;
-    static mut TT2: T2_OBJECT;
-    fn pad20(_: *mut libc::c_char) -> *mut libc::c_char;
-    fn yylex() -> libc::c_int;
-    fn yyerror(_: *mut libc::c_char);
-    fn tonum(_: *mut libc::c_char) -> libc::c_int;
 }
 pub type size_t = libc::c_ulong;
 pub type __off_t = libc::c_long;
@@ -1308,7 +1308,7 @@ pub unsafe extern "C" fn yyparse() -> libc::c_int {
             let mut yysize: libc::c_long = yyssp.offset_from(yyss) as libc::c_long
                 + 1 as libc::c_int as libc::c_long;
             if 10000 as libc::c_int as libc::c_long <= yystacksize {
-                current_block = 5824645410755033635;
+                current_block = 10790463427681132618;
                 break;
             }
             yystacksize *= 2 as libc::c_int as libc::c_long;
@@ -1326,7 +1326,7 @@ pub unsafe extern "C" fn yyparse() -> libc::c_int {
                         - 1 as libc::c_int as libc::c_long)) as libc::c_ulong,
             ) as *mut yyalloc;
             if yyptr.is_null() {
-                current_block = 5824645410755033635;
+                current_block = 10790463427681132618;
                 break;
             }
             let mut yynewbytes: libc::c_long = 0;
@@ -1375,18 +1375,18 @@ pub unsafe extern "C" fn yyparse() -> libc::c_int {
             if yyss.offset(yystacksize as isize).offset(-(1 as libc::c_int as isize))
                 <= yyssp
             {
-                current_block = 16957704171120644238;
+                current_block = 644608533949437699;
                 break;
             }
         }
         if yystate == 2 as libc::c_int {
             yyresult = 0 as libc::c_int;
-            current_block = 15939128995536588556;
+            current_block = 6804721784439930621;
             break;
         } else {
             yyn = yypact[yystate as usize] as libc::c_int;
             if yyn == -(41 as libc::c_int) {
-                current_block = 8315090260299038268;
+                current_block = 5443815222770648792;
             } else {
                 if yychar == -(2 as libc::c_int) {
                     yychar = yylex();
@@ -1398,7 +1398,7 @@ pub unsafe extern "C" fn yyparse() -> libc::c_int {
                 } else if yychar == 256 as libc::c_int {
                     yychar = 257 as libc::c_int;
                     yytoken = YYSYMBOL_YYerror;
-                    current_block = 12649877089218048548;
+                    current_block = 13221955828059440393;
                 } else {
                     yytoken = (if 0 as libc::c_int <= yychar
                         && yychar <= 282 as libc::c_int
@@ -1410,19 +1410,19 @@ pub unsafe extern "C" fn yyparse() -> libc::c_int {
                     current_block = 17728966195399430138;
                 }
                 match current_block {
-                    12649877089218048548 => {}
+                    13221955828059440393 => {}
                     _ => {
                         yyn += yytoken as libc::c_int;
                         if yyn < 0 as libc::c_int || (145 as libc::c_int) < yyn
                             || yycheck[yyn as usize] as libc::c_int
                                 != yytoken as libc::c_int
                         {
-                            current_block = 8315090260299038268;
+                            current_block = 5443815222770648792;
                         } else {
                             yyn = yytable[yyn as usize] as libc::c_int;
                             if yyn <= 0 as libc::c_int {
                                 yyn = -yyn;
-                                current_block = 4512938705799644664;
+                                current_block = 15441631915219389504;
                             } else {
                                 if yyerrstatus != 0 {
                                     yyerrstatus -= 1;
@@ -1431,14 +1431,14 @@ pub unsafe extern "C" fn yyparse() -> libc::c_int {
                                 yyvsp = yyvsp.offset(1);
                                 *yyvsp = yylval;
                                 yychar = -(2 as libc::c_int);
-                                current_block = 2854092039226949611;
+                                current_block = 2825498391814666816;
                             }
                         }
                     }
                 }
             }
             match current_block {
-                8315090260299038268 => {
+                5443815222770648792 => {
                     yyn = yydefact[yystate as usize] as libc::c_int;
                     if yyn == 0 as libc::c_int {
                         yytoken = (if yychar == -(2 as libc::c_int) {
@@ -1461,7 +1461,7 @@ pub unsafe extern "C" fn yyparse() -> libc::c_int {
                         if yyerrstatus == 3 as libc::c_int {
                             if yychar <= 0 as libc::c_int {
                                 if yychar == 0 as libc::c_int {
-                                    current_block = 16957704171120644238;
+                                    current_block = 644608533949437699;
                                     break;
                                 }
                             } else {
@@ -1473,15 +1473,15 @@ pub unsafe extern "C" fn yyparse() -> libc::c_int {
                                 yychar = -(2 as libc::c_int);
                             }
                         }
-                        current_block = 12649877089218048548;
+                        current_block = 13221955828059440393;
                     } else {
-                        current_block = 4512938705799644664;
+                        current_block = 15441631915219389504;
                     }
                 }
                 _ => {}
             }
             match current_block {
-                12649877089218048548 => {
+                13221955828059440393 => {
                     yyerrstatus = 3 as libc::c_int;
                     loop {
                         yyn = yypact[yystate as usize] as libc::c_int;
@@ -1498,7 +1498,7 @@ pub unsafe extern "C" fn yyparse() -> libc::c_int {
                             }
                         }
                         if yyssp == yyss {
-                            current_block = 16957704171120644238;
+                            current_block = 644608533949437699;
                             break 's_64;
                         }
                         yydestruct(
@@ -1514,7 +1514,7 @@ pub unsafe extern "C" fn yyparse() -> libc::c_int {
                     *yyvsp = yylval;
                     yystate = yyn;
                 }
-                4512938705799644664 => {
+                15441631915219389504 => {
                     yylen = yyr2[yyn as usize] as libc::c_int;
                     yyval = *yyvsp.offset((1 as libc::c_int - yylen) as isize);
                     match yyn {
@@ -2303,14 +2303,14 @@ pub unsafe extern "C" fn yyparse() -> libc::c_int {
         }
     }
     match current_block {
-        5824645410755033635 => {
+        10790463427681132618 => {
             yyerror(
                 b"memory exhausted\0" as *const u8 as *const libc::c_char
                     as *mut libc::c_char,
             );
             yyresult = 2 as libc::c_int;
         }
-        16957704171120644238 => {
+        644608533949437699 => {
             yyresult = 1 as libc::c_int;
         }
         _ => {}

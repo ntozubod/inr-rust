@@ -256,7 +256,7 @@ pub unsafe extern "C" fn T2_sync(mut T2: T2_OBJECT) {
                 >(b"void T2_sync(T2_OBJECT)\0"))
                     .as_ptr(),
             );
-        }
+        };
         i += 1;
     }
     Sfree(pr_str);

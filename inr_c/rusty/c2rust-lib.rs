@@ -6,7 +6,6 @@
 #![allow(unused_assignments)]
 #![allow(unused_mut)]
 #![feature(extern_types)]
-#![feature(label_break_value)]
 #![feature(register_tool)]
 #![register_tool(c2rust)]
 
@@ -37,6 +36,7 @@ pub mod Asubs;
 pub mod Atrim;
 pub mod Aunicode;
 pub mod Colon;
+pub mod Lex;
 pub mod P;
 pub mod Q;
 pub mod R;

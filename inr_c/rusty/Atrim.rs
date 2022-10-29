@@ -96,7 +96,7 @@ pub unsafe extern "C" fn A_tr_DFS(mut l_state: SHORT) -> SHORT {
     let mut return_val: SHORT = 0;
     let mut rec_stk_idx: libc::c_int = 0 as libc::c_int;
     let mut cmp_stk_idx: libc::c_int = 0 as libc::c_int;
-    'c_3225: loop {
+    'c_1918: loop {
         *state.offset(rec_stk_idx as isize) = l_state;
         let fresh0 = t_cnt;
         t_cnt = t_cnt + 1;
@@ -131,7 +131,7 @@ pub unsafe extern "C" fn A_tr_DFS(mut l_state: SHORT) -> SHORT {
                 l_state = *state.offset(rec_stk_idx as isize);
                 return_val = l_state;
                 if !(rec_stk_idx > 0 as libc::c_int) {
-                    break 'c_3225;
+                    break 'c_1918;
                 }
                 rec_stk_idx -= 1;
                 l_next = return_val;

@@ -14,7 +14,7 @@ name = "c2rust_out"
 path = "c2rust-lib.rs"
 crate-type = ["staticlib", "rlib"]
 [[bin]]
-path = "Lex.rs"
-name = "Lex"
+path = "main.rs"
+name = "main"
 [dependencies]
 libc= "0.2"

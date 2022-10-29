@@ -3,8 +3,8 @@ extern "C" {
     pub type _IO_wide_data;
     pub type _IO_codecvt;
     pub type _IO_marker;
-    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
     fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
+    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
     fn strlen(_: *const libc::c_char) -> libc::c_ulong;
     static mut fpout: *mut FILE;
     fn Sarena();
@@ -16,7 +16,6 @@ extern "C" {
     fn Tn_name(_: Tn_OBJECT, _: libc::c_int) -> *mut libc::c_char;
     fn T2_insert(_: T2_OBJECT, _: *mut libc::c_char, _: libc::c_int) -> libc::c_int;
     fn T2_name(_: T2_OBJECT, _: libc::c_int) -> *mut libc::c_char;
-    fn A_prsseq(_: A_OBJECT, _: *mut libc::c_char, _: T2_OBJECT) -> A_OBJECT;
     static mut A_report: libc::c_int;
     fn A_rept(_: A_OBJECT) -> A_OBJECT;
     fn A_copy(_: A_OBJECT) -> A_OBJECT;
@@ -25,6 +24,8 @@ extern "C" {
     fn A_close(_: A_OBJECT) -> A_OBJECT;
     fn A_load(_: *mut libc::c_char, _: T2_OBJECT) -> A_OBJECT;
     fn A_lwds(_: *mut libc::c_char, _: T2_OBJECT) -> A_OBJECT;
+    fn A_prsseq(_: A_OBJECT, _: *mut libc::c_char, _: T2_OBJECT) -> A_OBJECT;
+    fn A_pr(_: A_OBJECT, _: *mut libc::c_char, _: T2_OBJECT) -> A_OBJECT;
     fn A_save(_: A_OBJECT, _: *mut libc::c_char, _: T2_OBJECT) -> A_OBJECT;
     fn A_trim(_: A_OBJECT) -> A_OBJECT;
     fn A_lameq(_: A_OBJECT) -> A_OBJECT;
@@ -35,7 +36,7 @@ extern "C" {
     fn A_letter(_: libc::c_int, _: libc::c_int) -> A_OBJECT;
     fn A_deecho(_: A_OBJECT, _: libc::c_int, _: libc::c_int) -> A_OBJECT;
     fn A_star(_: A_OBJECT) -> A_OBJECT;
-    fn A_pr(_: A_OBJECT, _: *mut libc::c_char, _: T2_OBJECT) -> A_OBJECT;
+    fn A_differ(_: A_OBJECT, _: A_OBJECT) -> A_OBJECT;
     fn A_alph(_: A_OBJECT) -> A_OBJECT;
     fn A_rev(_: A_OBJECT) -> A_OBJECT;
     fn A_enum(_: A_OBJECT, _: T2_OBJECT, _: libc::c_int) -> A_OBJECT;
@@ -44,25 +45,24 @@ extern "C" {
     fn A_suff(_: A_OBJECT) -> A_OBJECT;
     fn A_join(_: A_OBJECT, _: A_OBJECT) -> A_OBJECT;
     fn A_retape(_: A_OBJECT, _: A_OBJECT, _: T2_OBJECT) -> A_OBJECT;
-    fn A_lenmin(_: A_OBJECT) -> A_OBJECT;
     fn A_catpow(_: A_OBJECT, _: libc::c_int) -> A_OBJECT;
+    fn A_lenmin(_: A_OBJECT) -> A_OBJECT;
     fn A_minlen(_: A_OBJECT) -> libc::c_int;
     fn A_prstems(_: A_OBJECT, _: T2_OBJECT, _: libc::c_int);
     fn A_sseq(_: A_OBJECT) -> A_OBJECT;
     fn A_LMsseq(_: A_OBJECT) -> A_OBJECT;
     fn A_GMsseq(_: A_OBJECT) -> A_OBJECT;
     fn A_clsseq(_: A_OBJECT) -> A_OBJECT;
-    fn A_differ(_: A_OBJECT, _: A_OBJECT) -> A_OBJECT;
-    fn A_gen_min(_: A_OBJECT) -> A_OBJECT;
+    static mut TT2: T2_OBJECT;
     static mut TAlist: Tn_OBJECT;
     static mut Alist: *mut A_OBJECT;
     fn pad20(_: *mut libc::c_char) -> *mut libc::c_char;
     fn tonum(_: *mut libc::c_char) -> libc::c_int;
+    fn A_gen_min(_: A_OBJECT) -> A_OBJECT;
     static mut Atemp: A_OBJECT;
     fn A_spit_utf8(_: A_OBJECT, _: *mut libc::c_char, _: T2_OBJECT) -> A_OBJECT;
     fn A_spit_octets(_: A_OBJECT, _: *mut libc::c_char, _: T2_OBJECT) -> A_OBJECT;
     fn A_slurp_utf8(_: *mut libc::c_char, _: T2_OBJECT) -> A_OBJECT;
-    static mut TT2: T2_OBJECT;
     fn A_slurp_octets(_: *mut libc::c_char, _: T2_OBJECT) -> A_OBJECT;
 }
 pub type size_t = libc::c_ulong;

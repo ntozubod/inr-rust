@@ -639,7 +639,7 @@ pub unsafe extern "C" fn Ssize(mut p: *mut libc::c_char) -> libc::c_long {
             >(b"long Ssize(char *)\0"))
                 .as_ptr(),
         );
-    }
+    };
     return ((::std::mem::size_of::<S_ft>() as libc::c_ulong)
         << *p.offset(-(3 as libc::c_int) as isize) as libc::c_int)
         .wrapping_sub(4 as libc::c_int as libc::c_ulong) as libc::c_long;

@@ -3,6 +3,7 @@ extern "C" {
     pub type _IO_wide_data;
     pub type _IO_codecvt;
     pub type _IO_marker;
+    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
     static mut stdin: *mut FILE;
     static mut stdout: *mut FILE;
     fn fclose(__stream: *mut FILE) -> libc::c_int;
@@ -11,16 +12,6 @@ extern "C" {
     fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
     fn printf(_: *const libc::c_char, _: ...) -> libc::c_int;
     fn getc(__stream: *mut FILE) -> libc::c_int;
-    fn A_sseq(_: A_OBJECT) -> A_OBJECT;
-    fn A_union(_: A_OBJECT, _: A_OBJECT) -> A_OBJECT;
-    fn A_min(_: A_OBJECT) -> A_OBJECT;
-    fn A_load_save(_: *mut libc::c_char, _: T2_OBJECT) -> A_OBJECT;
-    fn A_load_pr(_: *mut libc::c_char, _: T2_OBJECT) -> A_OBJECT;
-    fn A_close(_: A_OBJECT) -> A_OBJECT;
-    fn A_add(_: A_OBJECT, _: libc::c_int, _: libc::c_int, _: libc::c_int) -> A_OBJECT;
-    fn A_destroy(_: A_OBJECT);
-    fn A_create() -> A_OBJECT;
-    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
     fn strlen(_: *const libc::c_char) -> libc::c_ulong;
     fn __assert_fail(
         __assertion: *const libc::c_char,
@@ -32,6 +23,15 @@ extern "C" {
     fn Error(_: *mut libc::c_char);
     fn T2_insert(_: T2_OBJECT, _: *mut libc::c_char, _: libc::c_int) -> libc::c_int;
     fn T2_name_pr(_: T2_OBJECT, _: libc::c_int) -> *mut libc::c_char;
+    fn A_create() -> A_OBJECT;
+    fn A_destroy(_: A_OBJECT);
+    fn A_add(_: A_OBJECT, _: libc::c_int, _: libc::c_int, _: libc::c_int) -> A_OBJECT;
+    fn A_close(_: A_OBJECT) -> A_OBJECT;
+    fn A_load_pr(_: *mut libc::c_char, _: T2_OBJECT) -> A_OBJECT;
+    fn A_load_save(_: *mut libc::c_char, _: T2_OBJECT) -> A_OBJECT;
+    fn A_min(_: A_OBJECT) -> A_OBJECT;
+    fn A_union(_: A_OBJECT, _: A_OBJECT) -> A_OBJECT;
+    fn A_sseq(_: A_OBJECT) -> A_OBJECT;
 }
 pub type size_t = libc::c_ulong;
 pub type __off_t = libc::c_long;
@@ -355,7 +355,7 @@ pub unsafe extern "C" fn A_lwds(
             >(b"A_OBJECT A_lwds(char *, T2_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     if (*(*T2_Sigma).T2_int).Tn_n >= 258 as libc::c_int {} else {
         __assert_fail(
             b"T2_Sigma-> T2_int-> Tn_n >= 258\0" as *const u8 as *const libc::c_char,
@@ -367,7 +367,7 @@ pub unsafe extern "C" fn A_lwds(
             >(b"A_OBJECT A_lwds(char *, T2_OBJECT)\0"))
                 .as_ptr(),
         );
-    }
+    };
     A = A_create();
     As = A_create();
     c = getc(fp);

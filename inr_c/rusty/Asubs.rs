@@ -3,16 +3,7 @@ extern "C" {
     pub type _IO_wide_data;
     pub type _IO_codecvt;
     pub type _IO_marker;
-    fn A_clsure(_: A_OBJECT) -> A_OBJECT;
-    fn A_close(_: A_OBJECT) -> A_OBJECT;
-    fn A_add(_: A_OBJECT, _: libc::c_int, _: libc::c_int, _: libc::c_int) -> A_OBJECT;
-    fn A_exchange(_: A_OBJECT, _: A_OBJECT);
-    fn A_rept(_: A_OBJECT) -> A_OBJECT;
-    fn A_destroy(_: A_OBJECT);
-    fn A_create() -> A_OBJECT;
-    static mut A_report: libc::c_int;
-    fn V_vec(_: V_OBJECT, _: libc::c_int) -> *mut SHORT;
-    fn V_insert(_: V_OBJECT, _: *mut SHORT) -> libc::c_int;
+    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
     static mut fpout: *mut FILE;
     fn Salloc(_: libc::c_long) -> *mut libc::c_char;
     fn Sfree(_: *mut libc::c_char);
@@ -20,7 +11,16 @@ extern "C" {
     fn s_alloc(_: libc::c_int) -> *mut SHORT;
     fn V_create() -> V_OBJECT;
     fn V_destroy(_: V_OBJECT);
-    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
+    fn V_insert(_: V_OBJECT, _: *mut SHORT) -> libc::c_int;
+    fn V_vec(_: V_OBJECT, _: libc::c_int) -> *mut SHORT;
+    static mut A_report: libc::c_int;
+    fn A_create() -> A_OBJECT;
+    fn A_destroy(_: A_OBJECT);
+    fn A_rept(_: A_OBJECT) -> A_OBJECT;
+    fn A_exchange(_: A_OBJECT, _: A_OBJECT);
+    fn A_add(_: A_OBJECT, _: libc::c_int, _: libc::c_int, _: libc::c_int) -> A_OBJECT;
+    fn A_close(_: A_OBJECT) -> A_OBJECT;
+    fn A_clsure(_: A_OBJECT) -> A_OBJECT;
 }
 pub type size_t = libc::c_ulong;
 pub type __off_t = libc::c_long;

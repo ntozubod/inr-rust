@@ -7,11 +7,11 @@ cp ../src/* .
 
 bear -- make
 
-rm -f *.o *.y Makefile COPYING ginr
+rm -f *.o *.y Makefile COPYING ginr inrx.a
 
 sed --in-place '/Version/s/";/-RUSTY";/' stamp.c
 
-c2rust transpile --binary Lex compile_commands.json
+c2rust transpile --binary main compile_commands.json
 
 rm -f *.c *.h
 
@@ -19,4 +19,4 @@ mv y.tab.rs y_tab.rs
 
 cargo build
 
-cp target/debug/Lex rustinr
+cp target/debug/main rustinr

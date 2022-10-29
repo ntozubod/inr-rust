@@ -140,7 +140,7 @@ pub unsafe extern "C" fn Tn_member(
             >(b"int Tn_member(Tn_OBJECT, char *, int)\0"))
                 .as_ptr(),
         );
-    }
+    };
     Tn_calls += 1;
     h = 0 as libc::c_int;
     i = 0 as libc::c_int;
@@ -235,7 +235,7 @@ pub unsafe extern "C" fn Tn_grow(
             >(b"Tn_OBJECT Tn_grow(Tn_OBJECT, int)\0"))
                 .as_ptr(),
         );
-    }
+    };
     i = 0 as libc::c_int;
     while i < (*Tn).Tn_n {
         idx = idx_next;
@@ -276,7 +276,7 @@ pub unsafe extern "C" fn Tn_insert(
             >(b"int Tn_insert(Tn_OBJECT, char *, int)\0"))
                 .as_ptr(),
         );
-    }
+    };
     if (*Tn).Tn_n >= (*Tn).Tn_lname {
         if (*Tn).Tn_n >= 0o17777777777 as libc::c_int {
             Error(
